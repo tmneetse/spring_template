@@ -14,3 +14,10 @@ vi app/src/main/resources/application.yml
 # 起動
 docker-compose up -d
 ```
+
+## Generate code by swagger
+
+```bash
+# Ref https://github.com/int128/gradle-swagger-generator-plugin
+./gradlew generateSwaggerCode
+```
