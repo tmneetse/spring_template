@@ -2,6 +2,7 @@ plugins {
     id 'org.springframework.boot' version '2.3.4.RELEASE'
     id 'io.spring.dependency-management' version '1.0.10.RELEASE'
     id 'java'
+    id 'org.hidetake.swagger.generator' version '2.18.2'
 }
 
 group = 'com.template'
@@ -28,8 +29,23 @@ dependencies {
     testImplementation('org.springframework.boot:spring-boot-starter-test') {
         exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
     }
+    swaggerCodegen 'io.swagger.codegen.v3:swagger-codegen-cli:3.0.22'
+    swaggerCodegen 'org.openapitools:openapi-generator-cli:3.3.4'
+
+    // https://mvnrepository.com/artifact/org.webjars/bootstrap
+    compile group: 'org.webjars', name: 'bootstrap', version: '4.5.2'
+
 }
 
 test {
     useJUnitPlatform()
+}
+
+swaggerSources {
+    petstore {
+        inputFile = file("petstore.yaml")
+        code {
+            language = 'spring'
+        }
+    }
 }
